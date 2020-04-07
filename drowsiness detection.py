@@ -20,12 +20,11 @@ font = cv2.FONT_HERSHEY_COMPLEX_SMALL
 count = 0
 score = 0
 thicc = 2
-rpred = [99]
-lpred = [99]
-
+rpred = []
+lpred = []
 while (True):
     ret, frame = cap.read()
-    height, width = frame.shape[:2] 
+    height, width = frame.shape[:2]
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)    #CONVERT IMAGE TO GRAYSCALE   
 
@@ -36,13 +35,13 @@ while (True):
     cv2.rectangle(frame, (0, height - 50), (200, height), (0, 0, 0), thickness=cv2.FILLED)
 
     for (x, y, w, h) in faces:
-        cv2.rectangle(frame, (x, y), (x + w, y + h), (100, 100, 100), 1) 
+        cv2.rectangle(frame, (x, y), (x + w, y + h), (100, 100, 100), 1)
 
     for (x, y, w, h) in right_eye:
-        r_eye = frame[y:y + h, x:x + w]                     #EXTRACT RIGHT EYE FEATURES
+        r_eye = frame[y:y + h, x:x + w]     #EXTRACT RIGHT EYE FEATURES
         count = count + 1
         r_eye = cv2.cvtColor(r_eye, cv2.COLOR_BGR2GRAY)   
-        r_eye = cv2.resize(r_eye, (24, 24))                 #RESIZE TO 24*24 PIXELS 
+        r_eye = cv2.resize(r_eye, (24, 24))                 #RESIZE TO 24*24 PIXELS
         r_eye = r_eye / 255                                 #max color code 255 - to normalize data betweeen 0 to 1
         r_eye = r_eye.reshape(24, 24, -1)
         r_eye = np.expand_dims(r_eye, axis=0)
@@ -52,7 +51,6 @@ while (True):
         if (rpred[0] == 0):
             lbl = 'Closed'
         break
-
     for (x, y, w, h) in left_eye:
         l_eye = frame[y:y + h, x:x + w]
         count = count + 1
