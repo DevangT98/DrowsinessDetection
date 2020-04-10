@@ -57,19 +57,6 @@ while (True):
     mouth = yawn.detectMultiScale(gray)
     cv2.rectangle(frame, (0, height - 50), (200, height), (0, 0, 0), thickness=cv2.FILLED)
 
-    ##    for (x,y,w,h) in mouth:
-    ##        rect = dlib.rectangle(int(x), int(y), int(x + w),int(y + h))
-    ##
-    ##        shape = predictor_yawn(gray, rect)
-    ##        shape = face_utils.shape_to_np(shape)
-    ##        distance = lip_distance(shape)
-    ##        lip = shape[48:60]
-    ##        cv2.drawContours(frame, [lip], -1, (0, 255, 0), 1)
-    ##
-    ##        if (distance > YAWN_THRESH):
-    ##                cv2.putText(frame, "Yawn Alert", (10, 30),
-    ##                            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-    ##
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (100, 100, 100), 1)
         for (x, y, w, h) in mouth:
