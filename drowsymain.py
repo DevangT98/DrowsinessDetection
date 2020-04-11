@@ -54,7 +54,9 @@ while (True):
                                   minSize=(25, 25))  # RETURNS ARRAY OF DETECTIONS WITH X,Y,W,H.
     left_eye = leye.detectMultiScale(gray)
     right_eye = reye.detectMultiScale(gray)
-    mouth = yawn.detectMultiScale(gray)
+    mouth = yawn.detectMultiScale(gray, scaleFactor=1.1,
+                                  minNeighbors=5, minSize=(30, 30),
+                                  flags=cv2.CASCADE_SCALE_IMAGE)
     cv2.rectangle(frame, (0, height - 50), (200, height), (0, 0, 0), thickness=cv2.FILLED)
 
     for (x, y, w, h) in faces:

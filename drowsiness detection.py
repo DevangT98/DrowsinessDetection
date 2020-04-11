@@ -20,8 +20,8 @@ font = cv2.FONT_HERSHEY_COMPLEX_SMALL
 count = 0
 score = 0
 thicc = 2
-rpred = []
-lpred = []
+rpred = [99]
+lpred = [99]
 while (True):
     ret, frame = cap.read()
     height, width = frame.shape[:2]
